@@ -28,38 +28,69 @@ class Encryption : AppCompatActivity(){
 
         mSubmitBtn?.setOnClickListener { encryption(mEncryptionEDT?.text.toString()) }
 
+
     }
 
 
     fun encryption(aInput:String){
 
-        if(aInput.equals("")){
+        /*if(aInput.equals("")){
             mSubmitBtn?.visibility == View.GONE
         }else{
             mSubmitBtn?.visibility == View.VISIBLE
-        }
+        }*/
 
-            val charArray = arrayOf(aInput)
+            val charArray = aInput
 
             var output = ""
             var currentStr = charArray[0]
             var index = 0
             var idx = 1
             for (i in charArray) {
-                if ((index + 1) < charArray.size) {
+                if ((index + 1) < charArray.length) {
                     if (i == charArray[index + 1]) {
                         idx += 1
                     }else{
-                        output = "$output + $currentStr) + $idx"
+                        output = "$output $currentStr $idx"
                         idx = 1
                     }
                     currentStr = charArray[index + 1]
                     index += 1
-                }else if ((index + 1) == charArray.size) {
-                output = "$output + $currentStr) + $idx"
+                }else if ((index + 1) == charArray.length) {
+                output = "$output $currentStr $idx"
             }
                 mOutputTxt?.text = output
             }
+
+    }
+
+    fun decryption(aInput:String){
+
+        val charArray = aInput
+
+        var output = ""
+        var currentStr = charArray[0]
+        var index = 0
+        var idx = 1
+
+        for (i in charArray) {
+            if ((index + 1) < charArray.length) {
+                // Get count and convert it into values
+
+
+                if (i == charArray[index + 1]) {
+                    idx += 1
+                }else{
+                    output = "$output $currentStr $idx"
+                    idx = 1
+                }
+                currentStr = charArray[index + 1]
+                index += 1
+            }else if ((index + 1) == charArray.length) {
+                output = "$output $currentStr $idx"
+            }
+            mOutputTxt?.text = output
+        }
 
     }
 
